@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <!-- Above the 5.0.0.0 published in the official repository, so Jellyfin
+         offers this build as an update to the same plugin rather than
+         treating it as an equivalent alternative. -->
+    <Version>5.0.0.1</Version>
+    <AssemblyVersion>5.0.0.1</AssemblyVersion>
+    <FileVersion>5.0.0.1</FileVersion>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Nullable>disable</Nullable>

@@ -1,9 +1,9 @@
 [
     {
-        "guid": "d5cbcac9-7bbc-4ae5-a8a2-62e9f392dfeb",
-        "name": "VGMdb (Self-hosted)",
-        "overview": "VGMdb metadata for music libraries, with a configurable API server.",
-        "description": "Adds support for VGMdb to music libraries. The API server URL is configurable, so it can be pointed at a self-hosted vgmdb instance instead of the unreachable public one. Uses a distinct plugin id so it installs alongside the official VGMdb plugin rather than colliding with it.",
+        "guid": "44616595-5798-47ad-8658-3c09f3030505",
+        "name": "VGMdb",
+        "overview": "Adds support for VGMdb to music libraries. Can provide both images and metadata for artists and albums.",
+        "description": "Adds support for VGMdb to music libraries. The API server URL is configurable, so it can be pointed at a self-hosted vgmdb instance instead of the unreachable public one.",
         "owner": "salarx",
         "category": "Music",
         "imageUrl": "",
@@ -12,9 +12,9 @@
                 "version": "5.0.0.1",
                 "changelog": "Configurable API server URL via the plugin settings page.",
                 "targetAbi": "10.11.0.0",
-                "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.1-selfhosted/vgmdb-selfhosted_5.0.0.1.zip",
-                "checksum": "73e3e62c7eaba2fff8d5b2e408036e16",
-                "timestamp": "2026-08-22T18:48:52Z"
+                "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.1/vgmdb_5.0.0.1.zip",
+                "checksum": "86533d60019300a488e6240842e8a6e4",
+                "timestamp": "2026-08-22T18:58:36Z"
             }
         ]
     }

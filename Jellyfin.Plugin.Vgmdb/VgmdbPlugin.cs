@@ -24,19 +24,17 @@ public class VgmdbPlugin : BasePlugin<PluginConfiguration>, IHasWebPages
     public static VgmdbPlugin Instance { get; private set; }
 
     /// <inheritdoc />
-    public override string Name => "VGMdb (Self-hosted)";
+    public override string Name => "VGMdb";
 
     /// <inheritdoc />
-    public override Guid Id => Guid.Parse("d5cbcac9-7bbc-4ae5-a8a2-62e9f392dfeb");
+    public override Guid Id => Guid.Parse("44616595-5798-47ad-8658-3c09f3030505");
 
     /// <inheritdoc />
     public IEnumerable<PluginPageInfo> GetPages()
     {
         yield return new PluginPageInfo
         {
-            // Deliberately not the display name: that carries spaces and
-            // parentheses, which do not belong in a page identifier.
-            Name = "Vgmdb",
+            Name = Name,
             EmbeddedResourcePath = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}.Configuration.configPage.html",
