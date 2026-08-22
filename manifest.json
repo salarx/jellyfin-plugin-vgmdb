@@ -9,12 +9,20 @@
         "imageUrl": "",
         "versions": [
             {
+                "version": "5.0.0.2",
+                "changelog": "Identify by VGMdb album id now works; previously the id was ignored and the album name was searched instead.",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.2/vgmdb_5.0.0.2.zip",
+                "checksum": "c49de3596377bd4139e17ec9b3a217df",
+                "timestamp": "2026-08-22T21:09:24Z"
+            },
+            {
                 "version": "5.0.0.1",
                 "changelog": "Configurable API server URL via the plugin settings page.",
                 "targetAbi": "10.11.0.0",
                 "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.1/vgmdb_5.0.0.1.zip",
                 "checksum": "86533d60019300a488e6240842e8a6e4",
-                "timestamp": "2026-08-22T18:58:36Z"
+                "timestamp": "2026-08-22T18:50:00Z"
             }
         ]
     }

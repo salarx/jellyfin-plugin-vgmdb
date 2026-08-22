@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
@@ -124,6 +125,33 @@ public class VgmdbAlbumProvider : IRemoteMetadataProvider<MusicAlbum, AlbumInfo>
 
     public async Task<IEnumerable<RemoteSearchResult>> GetSearchResults(AlbumInfo searchInfo, CancellationToken cancellationToken)
     {
+        // The Identify dialog offers a VGMdb Album field, and this is the
+        // method behind it. Without this branch the id typed there is
+        // discarded and the name is searched instead, so identifying by id
+        // silently returns whatever the title happened to match -- usually
+        // nothing.
+        var providedId = searchInfo.GetProviderId(VgmdbAlbumExternalId.ExternalId);
+        if (!string.IsNullOrWhiteSpace(providedId)
+            && int.TryParse(providedId, NumberStyles.Integer, CultureInfo.InvariantCulture, out var directId))
+        {
+            var direct = await GetAlbumByIdAsync(directId, cancellationToken).ConfigureAwait(false);
+            if (direct == null)
+            {
+                return Array.Empty<RemoteSearchResult>();
+            }
+
+            return new[]
+            {
+                new RemoteSearchResult
+                {
+                    ProviderIds = direct.ProviderIds,
+                    Name = direct.Name,
+                    ProductionYear = direct.ProductionYear,
+                    ImageUrl = direct.PrimaryImagePath,
+                },
+            };
+        }
+
         var response = await _api.GetSearchResultsAsync(searchInfo.Name, cancellationToken).ConfigureAwait(false);
 
         var searchResults = new List<RemoteSearchResult>();
