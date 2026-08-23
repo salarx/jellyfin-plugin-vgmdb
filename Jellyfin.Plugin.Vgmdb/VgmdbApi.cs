@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Jellyfin.Plugin.Vgmdb.Models;
@@ -41,6 +42,26 @@ public class VgmdbApi
         }
     }
 
+    /// <summary>
+    /// Normalises a search term to its compatibility form.
+    /// </summary>
+    /// <remarks>
+    /// Album folders often carry fullwidth punctuation, and Jellyfin takes
+    /// the item name from the folder. vgmdb.net does not match those, so a
+    /// title containing a fullwidth quotation mark finds nothing while the
+    /// same title in ASCII finds the album. FormKC folds the whole fullwidth
+    /// block down to ASCII rather than special-casing one character.
+    /// </remarks>
+    private static string Normalize(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            return name;
+        }
+
+        return name.Normalize(NormalizationForm.FormKC);
+    }
+
     public async Task<ArtistResponse> GetArtistByIdAsync(int id, CancellationToken cancellationToken)
     {
         var httpClient = _httpClientFactory.CreateClient(NamedClient.Default);
@@ -58,7 +79,7 @@ public class VgmdbApi
     public async Task<SearchResponse> GetSearchResultsAsync(string name, CancellationToken cancellationToken)
     {
         var httpClient = _httpClientFactory.CreateClient(NamedClient.Default);
-        using var response = await httpClient.GetAsync(RootUrl + "/search?format=json&q=" + WebUtility.UrlEncode(name), cancellationToken).ConfigureAwait(false);
+        using var response = await httpClient.GetAsync(RootUrl + "/search?format=json&q=" + WebUtility.UrlEncode(Normalize(name)), cancellationToken).ConfigureAwait(false);
         return await response.Content.ReadFromJsonAsync<SearchResponse>(cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 }
