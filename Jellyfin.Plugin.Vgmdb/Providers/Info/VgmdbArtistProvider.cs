@@ -90,10 +90,18 @@ public class VgmdbArtistProvider : IRemoteMetadataProvider<MusicArtist, ArtistIn
 
         if (id != null)
         {
-            return new MetadataResult<MusicArtist>
+            var item = await GetArtistByIdAsync(id.Value, cancellationToken).ConfigureAwait(false);
+            if (item != null)
             {
-                Item = await GetArtistByIdAsync(id.Value, cancellationToken).ConfigureAwait(false)
-            };
+                return new MetadataResult<MusicArtist>
+                {
+                    Item = item,
+
+                    // See the album provider: without HasMetadata the fetched
+                    // result is discarded rather than merged.
+                    HasMetadata = true
+                };
+            }
         }
 
         return new MetadataResult<MusicArtist>();

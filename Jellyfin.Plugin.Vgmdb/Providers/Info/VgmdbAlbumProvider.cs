@@ -114,10 +114,21 @@ public class VgmdbAlbumProvider : IRemoteMetadataProvider<MusicAlbum, AlbumInfo>
 
         if (id != null)
         {
-            return new MetadataResult<MusicAlbum>
+            var item = await GetAlbumByIdAsync(id.Value, cancellationToken).ConfigureAwait(false);
+            if (item != null)
             {
-                Item = await GetAlbumByIdAsync(id.Value, cancellationToken).ConfigureAwait(false)
-            };
+                return new MetadataResult<MusicAlbum>
+                {
+                    Item = item,
+
+                    // Without this the result is fetched and then discarded:
+                    // HasMetadata defaults to false, and ExecuteRemoteProviders
+                    // only merges a result that sets it. The symptom is a
+                    // refresh that quietly changes nothing, having downloaded
+                    // the album in full.
+                    HasMetadata = true
+                };
+            }
         }
 
         return new MetadataResult<MusicAlbum>();
