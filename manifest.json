@@ -1,0 +1,29 @@
+[
+    {
+        "guid": "44616595-5798-47ad-8658-3c09f3030505",
+        "name": "VGMdb",
+        "overview": "Adds support for VGMdb to music libraries. Can provide both images and metadata for artists and albums.",
+        "description": "Adds support for VGMdb to music libraries. The API server URL is configurable, so it can be pointed at a self-hosted vgmdb instance instead of the unreachable public one.",
+        "owner": "salarx",
+        "category": "Music",
+        "imageUrl": "",
+        "versions": [
+            {
+                "version": "5.0.0.5",
+                "changelog": "Image search results are captioned with the provider name instead of 'undefined'.",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.5/vgmdb_5.0.0.5.zip",
+                "checksum": "4fa192ccbb2b409903dc6534ca236d12",
+                "timestamp": "2026-08-23T14:38:58Z"
+            },
+            {
+                "version": "5.0.0.4",
+                "changelog": "Fetched metadata is now actually applied.",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/salarx/jellyfin-plugin-vgmdb/releases/download/v5.0.0.4/vgmdb_5.0.0.4.zip",
+                "checksum": "9925cd8605d4bdd8359c9e0fcb0dd67d",
+                "timestamp": "2026-08-23T15:05:00Z"
+            }
+        ]
+    }
+]

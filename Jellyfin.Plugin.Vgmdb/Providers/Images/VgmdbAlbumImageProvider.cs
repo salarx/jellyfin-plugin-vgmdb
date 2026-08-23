@@ -47,6 +47,11 @@ public class VgmdbAlbumImageProvider : IRemoteImageProvider
 
         images.Add(new RemoteImageInfo
         {
+            // ProviderName is the caption the image picker puts under each
+            // result. Left unset it arrives as null and the web client
+            // renders the string "undefined" beneath a perfectly good image.
+            ProviderName = Name,
+            Type = ImageType.Primary,
             Url = album.PictureFull,
             ThumbnailUrl = album.PictureSmall
         });

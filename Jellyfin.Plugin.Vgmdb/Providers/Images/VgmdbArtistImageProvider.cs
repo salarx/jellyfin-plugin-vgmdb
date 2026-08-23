@@ -47,6 +47,10 @@ public class VgmdbArtistImageProvider : IRemoteImageProvider
 
         images.Add(new RemoteImageInfo
         {
+            // See the album image provider: without ProviderName the picker
+            // captions the result "undefined".
+            ProviderName = Name,
+            Type = ImageType.Primary,
             Url = artist.PictureFull,
             ThumbnailUrl = artist.PictureSmall
         });
